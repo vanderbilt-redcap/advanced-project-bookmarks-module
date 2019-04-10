@@ -1,0 +1,18 @@
+{
+	"name": "Advanced Project Bookmarks",
+	"namespace": "Vanderbilt\\AdvancedProjectBookmarksExternalModule",
+	"framework-version": 2,
+	"description": "Provides advanced project bookmark functionality.  See the documentation for details.",
+
+	"authors": [
+		{
+			"name": "Mark McEver",
+			"email": "datacore@vumc.org",
+			"institution": "Vanderbilt University Medical Center"
+		}
+	],
+
+	"permissions": [
+		"redcap_every_page_top"
+	]
+}
