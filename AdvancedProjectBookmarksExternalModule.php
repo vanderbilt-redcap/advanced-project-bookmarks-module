@@ -33,7 +33,7 @@ class AdvancedProjectBookmarksExternalModule extends \ExternalModules\AbstractEx
 	}
 
 	private function cssAttributeSelectorEscape($s){
-		foreach([':', '/'] as $c){
+		foreach([':', '/', '.'] as $c){
 			$s = str_replace("$c", "\\\\$c", $s);
 		}
 
