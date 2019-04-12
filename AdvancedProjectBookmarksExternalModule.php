@@ -13,18 +13,26 @@ class AdvancedProjectBookmarksExternalModule extends \ExternalModules\AbstractEx
 
 				$('#extres_panel .hang a[onClick*=<?=$escapedWebRoot?>]').each(function(i, link){
 					// This is a link to this REDCap instance.
+					link = $(link)
 
-					var onclick = $(link).attr('onclick')
 					if(recordId){
-						// If a matching 'record' parameter exists, change to an 'id' parameter (useful when multiple projects have matching records with the same ids).
-						// This will cause duplicate 'id' parameters, but that won't actually cause any problems.
-						onclick = onclick.replace('&record='+recordId, '&id='+recordId)
-						$(link).attr('onclick', onclick)
+						var adjustAttributeParams = function(attributeName){
+							var value = link.attr(attributeName)
+
+							// If a matching 'record' parameter exists, change to an 'id' parameter (useful when multiple projects have matching records with the same ids).
+							// This will cause duplicate 'id' parameters, but that won't actually cause any problems.
+							value = value.replace('&record='+recordId, '&id='+recordId)
+
+							link.attr(attributeName, value)
+						}
+
+						adjustAttributeParams('onclick')
+						adjustAttributeParams('href') // for when "Opens new window" is checked
 					}
-					else if(onclick.indexOf('&id=') !== -1){
+					else if(link.attr('onclick').indexOf('&id=') !== -1){
 						// This link expects a record id, but the current url does not include a record id.
 						// Hide this link on this page.
-						$(link).parent().hide()
+						link.parent().hide()
 					}
 				})
 			})
