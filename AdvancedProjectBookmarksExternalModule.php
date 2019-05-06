@@ -19,9 +19,13 @@ class AdvancedProjectBookmarksExternalModule extends \ExternalModules\AbstractEx
 						var adjustAttributeParams = function(attributeName){
 							var value = link.attr(attributeName)
 
-							// If a matching 'record' parameter exists, change to an 'id' parameter (useful when multiple projects have matching records with the same ids).
-							// This will cause duplicate 'id' parameters, but that won't actually cause any problems.
-							value = value.replace('&record='+recordId, '&id='+recordId)
+							if(value.indexOf('&record=') !== -1){
+								// Remove the id parameter if it already exists
+								value = value.replace(/&id=[^&]+/,'')
+
+								// Change the 'record' parameter to an 'id' parameter (useful when multiple projects have matching records with the same ids)
+								value = value.replace('&record='+recordId, '&id='+recordId)
+							}
 
 							link.attr(attributeName, value)
 						}
