@@ -1,9 +1,10 @@
 <?php
+
 namespace Vanderbilt\AdvancedProjectBookmarksExternalModule;
 
 class AdvancedProjectBookmarksExternalModule extends \ExternalModules\AbstractExternalModule
 {
-	function redcap_every_page_top(){
+	public function redcap_every_page_top() {
 		$escapedWebRoot = $this->cssAttributeSelectorEscape(APP_PATH_WEBROOT_FULL);
 
 		?>
@@ -44,8 +45,8 @@ class AdvancedProjectBookmarksExternalModule extends \ExternalModules\AbstractEx
 		<?php
 	}
 
-	private function cssAttributeSelectorEscape($s){
-		foreach([':', '/', '.'] as $c){
+	private function cssAttributeSelectorEscape($s) {
+		foreach ([':', '/', '.'] as $c) {
 			$s = str_replace("$c", "\\\\$c", $s);
 		}
 
