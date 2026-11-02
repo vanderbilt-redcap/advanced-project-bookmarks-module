@@ -10,7 +10,7 @@ class AdvancedProjectBookmarksExternalModule extends \ExternalModules\AbstractEx
 		?>
 		<script>
 			$(function(){
-				var recordId = <?=json_encode(@$_GET['id'])?>;
+				var recordId = <?=json_encode($this->framework->escape(@$_GET['id']))?>;
 
 				$('#extres_panel .hang a[onClick*=<?=$escapedWebRoot?>]').each(function(i, link){
 					// This is a link to this REDCap instance.
